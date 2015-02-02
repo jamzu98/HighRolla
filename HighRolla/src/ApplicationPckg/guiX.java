@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class guiX {
@@ -24,9 +25,9 @@ public class guiX {
 	private JTextField textField;
 	private JTextField textField_1;
 	Random rand = new Random();
-	private JTextField textField_2;
 	private JButton btnNewButton;
 	private JSeparator separator;
+	String myString;
 
 	/**
 	 * Launch the application.
@@ -58,15 +59,11 @@ public class guiX {
 		frmHighrollaV = new JFrame();
 		frmHighrollaV.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frmHighrollaV.setTitle("HighRolla- Random Number Generator");
-		frmHighrollaV.setBounds(100, 100, 474, 399);
+		frmHighrollaV.setBounds(100, 100, 474, 329);
 		frmHighrollaV.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmHighrollaV.getContentPane().setLayout(null);
 
 		textField = new JTextField();
-		textField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		textField.setBounds(87, 140, 134, 28);
 		frmHighrollaV.getContentPane().add(textField);
 		textField.setColumns(10);
@@ -75,6 +72,8 @@ public class guiX {
 		textField_1.setBounds(233, 140, 134, 28);
 		frmHighrollaV.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
+
+		JTextArea rollAns = new JTextArea();
 
 		JButton btnRoll = new JButton("ROLL");
 		btnRoll.setToolTipText("Start Rolling");
@@ -89,12 +88,15 @@ public class guiX {
 
 					for (int i = 0; i < num1; i++) {
 						int dice = 1 + rand.nextInt(num2);
-						textField_2.setText("You Rolled: "
-								+ Integer.toString(dice));
-						JOptionPane.showMessageDialog(null, "You Rolled: "
-								+ Integer.toString(dice), "Answer",
-								JOptionPane.INFORMATION_MESSAGE);
+						rollAns.append(dice + ",");
+						if((i%20)==1){
+							rollAns.append("\n");
+						}
+
+
 					}
+
+					JOptionPane.showMessageDialog(null, rollAns,"Random Numbers",JOptionPane.ERROR_MESSAGE);
 
 				} catch (Exception excep) {
 					JOptionPane.showMessageDialog(null,
@@ -118,17 +120,10 @@ public class guiX {
 		lblRollFrom.setBounds(250, 125, 104, 16);
 		frmHighrollaV.getContentPane().add(lblRollFrom);
 
-		textField_2 = new JTextField();
-		textField_2.setBackground(Color.WHITE);
-		textField_2.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		textField_2.setBounds(49, 279, 372, 51);
-		frmHighrollaV.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-
 		btnNewButton = new JButton("Info");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "V.1 "
+				JOptionPane.showMessageDialog(null, "V.1.1 "
 						+ "Made By Jami Makkonen (c)2015", "Info",
 						JOptionPane.WARNING_MESSAGE);
 			}
@@ -146,5 +141,16 @@ public class guiX {
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(109, 34, 218, 82);
 		frmHighrollaV.getContentPane().add(lblNewLabel);
+
+		JButton clearBtn = new JButton("Clear");
+		clearBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText("");
+				textField_1.setText("");
+			}
+		});
+		clearBtn.setBounds(379, 141, 74, 29);
+		frmHighrollaV.getContentPane().add(clearBtn);
+
 	}
 }
