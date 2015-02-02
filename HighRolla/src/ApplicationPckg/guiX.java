@@ -81,6 +81,7 @@ public class guiX {
 			public void actionPerformed(ActionEvent e) {
 
 				int num1, num2;
+				rollAns.setText("");
 
 				try {
 					num1 = Integer.parseInt(textField.getText());
@@ -123,7 +124,7 @@ public class guiX {
 		btnNewButton = new JButton("Info");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "V.1.1 "
+				JOptionPane.showMessageDialog(null, "V.1.1.1 "
 						+ "Made By Jami Makkonen (c)2015", "Info",
 						JOptionPane.WARNING_MESSAGE);
 			}
@@ -147,6 +148,7 @@ public class guiX {
 			public void actionPerformed(ActionEvent e) {
 				textField.setText("");
 				textField_1.setText("");
+				rollAns.setText("");
 			}
 		});
 		clearBtn.setBounds(379, 141, 74, 29);
